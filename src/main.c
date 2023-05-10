@@ -18,7 +18,7 @@ int main(int argc, char** argv)
 		return 1;
  	}
 
-	unsigned char output_image[width * height * 4];
+	unsigned char *output_image = (unsigned char*)malloc(width * height * 4 * sizeof(unsigned char));
 	for(int y = 0; y < height; y++){
 		for(int x = 0; x < width; x++){
 			int greyscale = (
@@ -37,6 +37,7 @@ int main(int argc, char** argv)
 
 	stbi_image_free(color_image);
 	stbi_image_free(greyscale_image);
+	free(output_image);
 
 	return 0;
 }
